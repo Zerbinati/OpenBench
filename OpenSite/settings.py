@@ -83,6 +83,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'OpenSite.wsgi.application'
 
+# CSRF Trusted Origins
+CSRF_TRUSTED_ORIGINS = [
+        'https://hypnos.bigzerchess.com'
+]
+
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
