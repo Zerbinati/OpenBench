@@ -25,7 +25,7 @@ import traceback
 
 from OpenSite.settings import PROJECT_PATH
 
-OPENBENCH_STATIC_VERSION = 'v3'
+OPENBENCH_STATIC_VERSION = 'v4'
 
 OPENBENCH_CONFIG = None # Initialized by OpenBench/apps.py
 
@@ -64,6 +64,10 @@ def load_engine_config(engine_name):
 
         verify_engine_basics(conf)
         verify_engine_build(engine_name, conf)
+
+        for preset_type in ['test_presets', 'tune_presets', 'datagen_presets']:
+            if preset_type not in conf.keys() or 'default' not in conf[preset_type].keys():
+                conf[preset_type] = { 'default' : {} }
 
         assert 'default' in conf['test_presets'].keys()
         assert 'default' in conf['tune_presets'].keys()
